@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Vegetarian Choice</title>
-</head>
-<body>
-    {% for recipe in recipes %}
-        {{ recipe.category }}<br>
-        {{ recipe.receipe_name }}<br>
-        {{ recipe.receipe_url}}<br>
-        {{ recipe.serving }}<br>
-        {{ recipe.method }}<br>
-        {{ recipe.time }}<br>
+{% extends "base.html" %}
+{% block content %}
+
+    <h2> I'm extending the base template</h2>
+    {% for receipe in receipes %}
+        {{ receipe.category }}<br>
+        {{ receipe.receipe_name }}<br>
+        {{ receipe.receipe_url}}<br>
+        {{ receipe.serving }}<br>
+        {{ receipe.method }}<br>
+        {{ receipe.time }}<br>
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}
