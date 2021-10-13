@@ -28,13 +28,13 @@
       </div>
     </div>
 
-    {% for receipe in receipes %}
-        {{ receipe.category }}<br>
-        {{ receipe.receipe_name }}<br>
-        {{ receipe.receipe_url}}<br>
-        {{ receipe.serving }}<br>
-        {{ receipe.method }}<br>
-        {{ receipe.time }}<br>
+    {% for recipe in recipes %}
+        {{ recipe.recipe }}<br>
+        {{ recipe.recipe_name }}<br>
+        {{ recipe.recipe_url}}<br>
+        {{ recipe.serving }}<br>
+        {{ recipe.method }}<br>
+        {{ recipe.time }}<br>
     {% endfor %}
 
 {% endblock %}
