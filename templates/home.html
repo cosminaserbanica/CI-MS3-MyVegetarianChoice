@@ -1,32 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="row center">
-      <div class="col s12 m12">
-        <div class="card">
-          <div class="card-image center">
-            <img src="/static/images/vegetarian card.jpg">
+    <section class="page-section clearfix">
+      <div class="container">
+          <div class="intro">
+              <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="assets/img/intro.jpg" alt="..." />
+              <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                  <h2 class="section-heading mb-4">
+                      <span class="section-heading-upper">Fresh Coffee</span>
+                      <span class="section-heading-lower">Worth Drinking</span>
+                  </h2>
+                  <p class="mb-3">Every cup of our quality artisan coffee starts with locally sourced, hand picked ingredients. Once you try it, our coffee will be a blissful addition to your everyday morning routine - we guarantee it!</p>
+                  <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="#!">Visit Us Today!</a></div>
+              </div>
           </div>
-          <div class="card-content">
-            <p>Healthy, tasty and easy to make!</p>
-            <p>Plenty of choices!</p>
+      </div>
+    </section>
+    <section class="page-section cta">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-9 mx-auto">
+                  <div class="cta-inner bg-faded text-center rounded">
+                      <h2 class="section-heading mb-4">
+                          <span class="section-heading-upper">Our Promise</span>
+                          <span class="section-heading-lower">To You</span>
+                      </h2>
+                      <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
-    <div class="row center">
-      <a class="waves-effect waves-light btn">Login</a>
-      <a class="waves-effect waves-light btn">Register</a>
-    </div>
-    <div class="row center">
-      <div class="carousel">
-        <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-        <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-        <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-        <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-        <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
-      </div>
-    </div>
+    </section>
+    <footer class="footer text-faded text-center py-5">
+      <div class="container"><p class="m-0 small">Copyright &copy; Your Website 2021</p></div>
+    </footer>
 
 
 {% endblock %}
