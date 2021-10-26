@@ -4,10 +4,11 @@
     {% for recipe in recipes %}
         {{ recipe.recipe }}<br>
         {{ recipe.recipe_name }}<br>
-        {{ recipe.recipe_url}}<br>
+        {{ recipe.recipe_image}}<br>
         {{ recipe.serving }}<br>
         {{ recipe.method }}<br>
         {{ recipe.time }}<br>
+        {{ recipe.ingredients }}<br>
     {% endfor %}
 
 {% endblock %}
