@@ -5990,6 +5990,15 @@ textarea.form-control-lg {
   position: relative;
 }
 
+.carousel-inner, .carousel-inner img {
+  height: 350px;
+}
+
+.carousel-inner img {
+  width: 100%;
+  object-fit: cover;
+}
+
 .carousel.pointer-event {
   touch-action: pan-y;
 }
