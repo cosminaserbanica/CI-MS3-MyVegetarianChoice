@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% for recipe in recipes %}
-        {{ recipe.recipe }}<br>
-        {{ recipe.recipe_name }}<br>
-        {{ recipe.recipe_image}}<br>
-        {{ recipe.serving }}<br>
-        {{ recipe.method }}<br>
-        {{ recipe.time }}<br>
-        {{ recipe.ingredients }}<br>
-    {% endfor %}
+<section class="page-section">
+    <div class="row" style="width: 100%; text-align: center; margin: 0;">
+      <div class="input-group" style="margin: 0 auto; width: auto; padding: 0;">
+        <div class="form-outline" style="display: flex;">
+          <input type="search" id="form1" class="form-control" placeholder="Search"/>
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+</section>
 
 {% endblock %}
