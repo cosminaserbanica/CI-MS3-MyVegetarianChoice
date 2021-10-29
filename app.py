@@ -50,7 +50,8 @@ def get_recipes():
 
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
+    return render_template("home.html", recipes=latest_recipes)
 
 
 @app.route("/register", methods=["GET", "POST"])
