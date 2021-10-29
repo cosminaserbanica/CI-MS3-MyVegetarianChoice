@@ -70,7 +70,7 @@ def get_recipes():
     # you can set PER_PAGE_PARAMETER in config file
     # e.g. Pagination(per_page_parameter='pp')
 
-    return render_template('recipes.html', per_page=3, recipes=recipes, pagination=pagination)
+    return render_template('recipes.html', recipes=recipes, pagination=pagination)
 
 
 @app.route("/home")
