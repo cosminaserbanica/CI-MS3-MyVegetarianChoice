@@ -14,19 +14,21 @@
     </div>
 </section>
 
-{% for recipe in recipes %}
-  <section class="page-section">
-    <div class="row" style="width: 100%; text-align: center; margin: 0;">
-      <div class="card" style="width: 18rem;">
+
+<section class="page-section">
+  <div class="row" style="width: 100%; text-align: center; margin: 0;">
+    {% for recipe in recipes %}
+      <div class="card" style="width: 18rem">
         <img class="recipe-card-img card-img-top" src="{{ recipe.recipe_image }}"  onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}">
         <div class="card-body">
           <h3 class="recipe-name">{{ recipe.recipe_name }}</a></h3>
           <h4 class="recipe-category">Category: {{ recipe.category }}</a></h3>
         </div>
       </div>
-    </div>
-  </section>
-{% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
 
 <section class="page-section">
   {{ pagination.info }}
