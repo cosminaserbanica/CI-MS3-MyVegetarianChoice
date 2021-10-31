@@ -48,6 +48,19 @@ def get_recipes():
     return render_template('recipes.html', recipes=recipes_paginated, pagination=pagination)
 
 
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    query = request.form.get("query")
+
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    results_count = len(recipes)
+
+    recipes_paginated = paginated(recipes)
+    pagination = pagination_args(recipes)
+
+    return render_template('search.html', recipes=recipes_paginated, query=query, results_count=results_count, pagination=pagination)
+
+
 @app.route("/home")
 def home():
     latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
