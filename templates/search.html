@@ -1,5 +1,40 @@
 {% extends "base.html" %}
+
+{% block header %}
+
+    <h2>{% if results_count == 0 %} No {% else %} {{ results_count }} {% endif %} {% if results_count == 1 %} Result {% else %} Results {% endif %} Found For <br class="d-block d-md-none"> "<span class="text-uppercase">{{ query }}</span>"</h2>
+        
+{% endblock %}
+
 {% block content %}
+
+    <div class="container-fluid">
+      <!-- Search Results-->
+      <div class="row search-area search-results">
+
+          {% if recipes|length > 0 %}
+            <section class="page-section">
+              <div class="row" style="width: 100%; text-align: center; margin: 0;">
+                {% for recipe in recipes %}
+                  <div class="card" style="width: 18rem">
+                    <img class="recipe-card-img card-img-top" src="{{ recipe.recipe_image }}"  onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}">
+                    <div class="card-body">
+                      <h3 class="recipe-name">{{ recipe.recipe_name }}</a></h3>
+                      <h4 class="recipe-category">Category: {{ recipe.category }}</a></h3>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </section>
+            
+          
+            <!-- Pagination -->
+            <div class="col-12 pagination-box">
+                {{ pagination.links }}
+            </div>
+          {% endif %}
+      </div>
+    </div>
 
 
 {% endblock %}
