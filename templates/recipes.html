@@ -1,38 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="page-section">
+  <section class="page-section">
+      <div class="row" style="width: 100%; text-align: center; margin: 0;">
+        <form action="{{ url_for('search') }}" method="POST" aria-label="Search Bar">
+          <div class="input-group" style="margin: 0 auto; width: auto; padding: 0;">
+            <div class="form-outline" style="display: flex;">
+                <label for="query" class="sr-only"></label>
+                <input type="search" name="query" id="query" class="form-control" placeholder="Search" aria-describedby="search_query"/>
+            </div>
+            <button class="btn btn-primary" id="search_query" type="submit" aria-label="Search Button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+  </section>
+
+
+  <section class="page-section">
     <div class="row" style="width: 100%; text-align: center; margin: 0;">
-      <div class="input-group" style="margin: 0 auto; width: auto; padding: 0;">
-        <div class="form-outline" style="display: flex;">
-          <input type="search" id="form1" class="form-control" placeholder="Search"/>
+      {% for recipe in recipes %}
+        <div class="card" style="width: 18rem">
+          <img class="recipe-card-img card-img-top" src="{{ recipe.recipe_image }}"  onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}">
+          <div class="card-body">
+            <h3 class="recipe-name">{{ recipe.recipe_name }}</a></h3>
+            <h4 class="recipe-category">Category: {{ recipe.category }}</a></h3>
+          </div>
         </div>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
+      {% endfor %}
     </div>
-</section>
+  </section>
 
 
-<section class="page-section">
-  <div class="row" style="width: 100%; text-align: center; margin: 0;">
-    {% for recipe in recipes %}
-      <div class="card" style="width: 18rem">
-        <img class="recipe-card-img card-img-top" src="{{ recipe.recipe_image }}"  onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}">
-        <div class="card-body">
-          <h3 class="recipe-name">{{ recipe.recipe_name }}</a></h3>
-          <h4 class="recipe-category">Category: {{ recipe.category }}</a></h3>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-</section>
-
-
-<section class="page-section">
-  {{ pagination.info }}
-  {{ pagination.links }}
-</section>
+  <section class="page-section">
+    {{ pagination.info }}
+    {{ pagination.links }}
+  </section>
 
 {% endblock %}
