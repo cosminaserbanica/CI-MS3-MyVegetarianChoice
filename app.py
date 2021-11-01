@@ -48,9 +48,23 @@ def get_recipes():
     return render_template('recipes.html', recipes=recipes_paginated, pagination=pagination)
 
 
+#global variable
+
+search_term= ''
+
+
 @app.route("/search", methods=['GET', 'POST'])
 def search():
+    
+    global search_term
     query = request.form.get("query")
+
+    #check if query is present
+    if query:
+        search_term = query
+    #if it's not use the previously saved search term
+    else:
+        query = search_term
 
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
     results_count = len(recipes)
