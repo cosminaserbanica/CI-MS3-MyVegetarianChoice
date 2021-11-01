@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
+from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -36,6 +37,26 @@ def pagination_args(recipes):
 
     return Pagination(page=page, per_page=PER_PAGE,
                       css_framework='bootstrap5', total=total)
+
+
+def login_required(f):
+    """
+    Using login_required decorator adapted from:
+    https://flask.palletsprojects.com/en/2.0.x/patterns/viewdecorators/#login-required-decorator
+    https://github.com/TravelTimN/flask-task-manager-project/blob/demo/app.py
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+
+        # User NOT logged in
+        if "user" not in session:
+            flash("Please log in to view this page!")
+            return redirect(url_for("login"))
+
+        # User IS logged in
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 
 
