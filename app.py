@@ -167,7 +167,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/edit_account/<username>", methods=["GET", "POST"])
+@app.route("/edit_profile/<username>", methods=["GET", "POST"])
 @login_required
 def edit_profile(username):
     """
@@ -176,7 +176,7 @@ def edit_profile(username):
         - Delete Account
     """
 
-    # user variable for user image
+
     user = mongo.db.users.find_one(
         {"username": session["user"]})
 
