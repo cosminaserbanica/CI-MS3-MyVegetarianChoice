@@ -167,6 +167,47 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/edit_account/<username>", methods=["GET", "POST"])
+@login_required
+def edit_profile(username):
+    """
+    Allows user to edit their account settings
+        - Change Password
+        - Delete Account
+    """
+
+    # user variable for user image
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
+
+    if session["user"] == username:
+
+        # Update profile function
+        if request.method == "POST":
+
+            mongo.db.users.update_one({'username': session['user']},
+                                      {'$set': {
+                                          'password': generate_password_hash(
+                                              request.form.get("password"))
+                                      }})
+
+            flash("Account Updated! Log back in to confirm changes.".format(
+                    request.form.get("username")))
+            session.pop("user")
+            return render_template("login.html",
+                                  title="Login")
+
+        return render_template("edit_profile.html",
+                              user=user,
+                              title="Edit Account")
+
+    else:
+        # if wrong user
+        flash("You do not have permission to view this page")
+        return redirect(url_for("recipes",
+                                username=session["user"]))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
