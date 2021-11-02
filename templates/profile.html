@@ -22,14 +22,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
-        <h2>Edit profile</h2>
-        <h2>Change password</h2>
-        <h2>Delete profile</h2>
+        <a class="nav-link" href="{{ url_for('edit_profile', username=session['user']) }}">Edit Profile</a>
       </div>
       <div class="col-md-6">
         <h2>My recipes</h2>
         <h2>My favourites</h2>
-        <h2>Remove from favourites</h2>
       </div>
     </div>
   </div>
