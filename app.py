@@ -207,6 +207,26 @@ def edit_profile(username):
         return redirect(url_for("recipes",
                                 username=session["user"]))
 
+@app.route("/delete_profile/<username>")
+@login_required
+def delete_profile(username):
+    """
+    Allows user to delete profile
+    """
+
+    if session["user"] == username:
+        mongo.db.users.remove(
+            {"username": username.lower()})
+        flash("Profile Deleted")
+        session.pop("user")
+
+        return redirect(url_for("register"))
+
+    else:
+        # if wrong user
+        flash("You do not have permission to do that!")
+        return redirect(url_for("recipes",
+                                username=session["user"]))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
