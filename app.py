@@ -228,6 +228,33 @@ def delete_profile(username):
         return redirect(url_for("recipes",
                                 username=session["user"]))
 
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    """
+    Users can upload new recipe.
+    """
+
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
+
+    if request.method == "POST":
+        recipe = {
+            "recipe_name": request.form.get("recipe_name"),
+            "recipe_image": request.form.get("recipe_image"),
+            "category": request.form.get("category"),
+            "serving": request.form.get("serving"),
+            "time": request.form.get("time"),
+            "recipe_ingredients": request.form.getlist("recipe_ingredients"),
+            "method": request.form.getlist("method")
+        }
+        
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe Added!")
+        return redirect(url_for("recipes", username=session["user"]))
+
+    return render_template("add_recipe.html", user=user)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
