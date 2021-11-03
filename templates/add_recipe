@@ -1,6 +1,101 @@
 {% extends "base.html" %}
 {% block content %}
 
+  <section class="page-section">
+    <div class="container-fluid page-padding">
 
+      <div class="row create-bg">
+          <form class="col-12" method="POST" action="{{ url_for('add_recipe') }}" aria-label="Add Recipe">
+
+              <!-- Recipe Name -->
+              <div class="row">
+                  <div class="col-12 form-group create-label">
+                      <label for="recipe_name"><span class="iconify" data-icon="ic:round-drive-file-rename-outline" data-inline="true"></span> Recipe Name</label>
+                      <input id="recipe_name" class="form-control" name="recipe_name" type="text" minlength="3" maxlength="20" aria-describedby="recipe_name" required />
+                  </div>
+              </div>
+
+              <!-- Recipe Category -->
+              <div class="row">
+                <div class="col-12 form-group create-label">
+                    <label for="category"><span class="iconify" data-icon="ic:round-drive-file-rename-outline" data-inline="true"></span> Recipe Category</label>
+                    <input id="category" class="form-control" name="category" type="text" minlength="3" maxlength="20" aria-describedby="category" required />
+                </div>
+              </div>
+
+              <!-- Image URL -->
+              <div class="row">
+                  <div class="col-12 form-group create-label">
+                      <label for="recipe_image"><i class="fas fa-camera"></i> Recipe Image <small>(URL)</small></label>
+                      <p class="mt-0 mb-0"><small>Copy and paste image url</small></p>
+                      <input id="recipe_image" class="form-control" name="recipe_image" type="url" aria-describedby="recipe_image" pattern="https?://.+"/>
+                  </div>
+              </div>
+
+              <!-- Prep time and Servings -->
+              <div class="row">
+                  <div class="col-12 form-group create-label">
+                      <div class="row">
+                          <div class="col-6">
+                              <label for="time"><span class="recipe-icon iconify" data-icon="ant-design:clock-circle-filled" data-inline="true"></span>Time- please specify minutes</label>
+                              <input id="time" class="form-control" name="time" type="text" aria-describedby="time" required />
+                          </div>
+                          <div class="col-6">
+                              <label for="serving"><span class="recipe-icon iconify" data-icon="majesticons:users" data-inline="true"></span> Serves:</label>
+                              <input id="serving" class="form-control" name="serving" type="text" aria-describedby="serving" required />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Ingredients -->
+              <div class="row ingredient-row create-label">
+                  <div class="col-12 form-group ing-input">
+                      <label for="recipe_ingredients"><i class="fas fa-list-ul"></i> Ingredients</label>
+                      <input id="recipe_ingredients" class="form-control" name="recipe_ingredients" type="text" aria-describedby="recipe_ingredients" minlength="3" required />
+                  </div>
+              </div>
+
+              <!--Add Ingredient button-->
+              <!-- ref: https://github.com/rebeccatraceyt/bake-it-til-you-make-it -->
+              <div class="row">
+                  <div class="col-12 form-group create-label">
+                      <a href="#">
+                          <p class="add-ing-btn"><i class="far fa-plus-square"></i> Add Ingredient</p>
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Method -->
+              <div class="row method-row create-label">
+                  <div class="col-12 form-group dir-input">
+                      <label for="method"><i class="fas fa-list-ol"></i> Method</label>
+                      <textarea id="method" class="form-control" name="method" aria-describedby="method" minlength="3" maxlength="300" rows="2"  required ></textarea>
+                  </div>
+              </div>
+
+              <!--Add Method button-->
+              <div class="row">
+                  <div class="col-12 form-group create-label">
+                      <a href="#">
+                          <p class="add-met-btn"><i class="far fa-plus-square"></i> Add Method</p>
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="row no-gutters create-btns">
+                  <div class="col-6 create-btn white-btn">
+                      <a href="{{ url_for('recipes', username=session['user']) }}" class="btn" aria-label="Cancel">Cancel</a>
+                  </div>
+
+                  <div class="col-6 create-btn">
+                      <button class="btn" type="submit" name="action" aria-label="Add Recipe">Add Recipe</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+  </section>
 
 {% endblock %}
