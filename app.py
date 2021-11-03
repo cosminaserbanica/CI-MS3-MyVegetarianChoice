@@ -229,6 +229,7 @@ def delete_profile(username):
                                 username=session["user"]))
 
 @app.route("/add_recipe", methods=["GET", "POST"])
+@login_required
 def add_recipe():
     """
     Users can upload new recipe.
@@ -250,10 +251,20 @@ def add_recipe():
         
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Added!")
-        return redirect(url_for("recipes", username=session["user"]))
+        return redirect(url_for("get_recipes"))
 
     return render_template("add_recipe.html", user=user)
 
+@app.route("/recipe/<recipe_id>")
+def recipe(recipe_id):
+    """
+    Displays the full recipe
+    """
+
+    recipe = mongo.db.recipes.find_one(
+        {"_id": ObjectId(recipe_id)})
+
+    return render_template("recipe.html", recipe=recipe)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
