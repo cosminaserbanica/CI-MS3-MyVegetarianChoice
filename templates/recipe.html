@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% block header %}
 
-    <!-- Page Title -->
-    <h2>{{ recipe.recipe_name }}</h2>
-
-{% endblock %}
+  <section class="page-section">
     <div class="container-fluid page-padding">
+      <div id="recipe-name" class="col-12 col-md-6">
+        <div id="recipe-name">
+            <h2>{{ recipe.recipe_name }}</h2>
+        </div>
+      </div>
       <!-- Recipe Image -->
       <div id="recipe-img-box" class="col-12 col-md-6">
         <div id="recipe-image">
@@ -16,7 +17,7 @@
       </div>
       <div id="recipe-category" class="col-12 col-md-6">
         <div id="recipe-category">
-          <span class="value">{{ recipe.category }}</span>
+          <span class="value">Category: {{ recipe.category }}</span>
         </div>
       </div>
       <div id="rec-specs" class="col-12">
@@ -24,19 +25,20 @@
           <div class="col-6">
             <div>
               <span class="recipe-icon iconify" data-icon="ant-design:clock-circle-filled" data-inline="true"></span>
-              <span class="value">{{ recipe.time }}</span>
+              <span class="value">Prep time: {{ recipe.time }}</span>
             </div>
           </div>
           <div class="col-6">
             <div>
               <span class="recipe-icon iconify" data-icon="majesticons:users" data-inline="true"></span>
-              <span class="title">Serves</span>
+              <span class="title">Serves:</span>
               <span class="value">{{ recipe.serving }}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
 
 {% endblock %}
