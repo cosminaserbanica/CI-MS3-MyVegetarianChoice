@@ -44,16 +44,16 @@
     <div class="row">
       <div id="recipe-ingredients" class="col-12 col-md-6">
           <div id="ingredient-list">
-            <ol>
-              <p>{{ recipe.recipe_ingredients }}</p>
-            </ol>
+              {% for ingredient in recipe.recipe_ingredients %}>
+                <p>{{ ingredient }}</p>
+              {% endfor %}
           </div>
       </div>
       <div id="recipe-method" class="col-12 col-md-6">
           <div id="method-list">
-            <ol>
-              <p>{{ recipe.method }}</p>
-            </ol>
+            {% for method in recipe.method %}
+              <p>{{ method }}</p>
+            {% endfor %}
           </div>
       </div>
     </div>
