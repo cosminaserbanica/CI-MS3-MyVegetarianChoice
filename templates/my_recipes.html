@@ -6,7 +6,7 @@
       <div class="col s12 m8 offset-m2">
         <div class="card-panel">
             <h3 class="center-align light-blue-text text-darken-4">
-              Your Recipes
+              My Recipes
             </h3>
         </div>
       </div>
@@ -32,7 +32,7 @@
             <h4 class="recipe-category">Category: {{ recipe.category }}</h4>
             <h5 class="recipe-creator"> Created by: {{ recipe.created_by }}</h5>
             <span>
-              <a role="button" href="" class="btn btn-primary">Edit</a>
+              <a role="button" href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn btn-primary">Edit</a>
               <a role="button" href="" class="btn btn-primary">Delete</a>
             </span>
           </div>
