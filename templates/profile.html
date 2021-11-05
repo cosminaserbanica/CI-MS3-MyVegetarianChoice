@@ -25,8 +25,8 @@
         <a class="nav-link" href="{{ url_for('edit_profile', username=session['user']) }}">Edit Profile</a>
       </div>
       <div class="col-md-6">
-        <h2>My recipes</h2>
-        <h2>My favourites</h2>
+        <a href="{{ url_for('my_recipes', username=session['user']) }}">View My recipes</a>
+        <h2>View my favourites</h2>
       </div>
     </div>
   </div>
