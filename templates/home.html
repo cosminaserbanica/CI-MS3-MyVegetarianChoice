@@ -43,11 +43,19 @@
 
     <section class="page-section">
       <div class="row" style="text-align: center;">
+        {% if session.user %}
+        <h2>Check out your latest recipes!</h2>
+        <span>
+          <a role="button" href="{{ url_for('profile', username=session['user']) }}" class="btn btn-primary">My profile</a>
+          <a role="button" href="{{ url_for('my_recipes', username=session['user']) }}" class="btn btn-primary">My Recipes</a>
+        </span>
+        {% else %}
         <h2>Why don't you join the community?</h2>
         <span>
           <a role="button" href="{{ url_for('login') }}" class="btn btn-primary">Log In</a>
           <a role="button" href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
         </span>
+        {% endif %}
       </div>
     </section>
 
