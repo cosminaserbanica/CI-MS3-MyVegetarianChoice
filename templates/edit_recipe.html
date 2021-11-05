@@ -77,7 +77,7 @@
                 {% for method in recipe.method %}
                   <div class="col-12 form-group dir-input">
                       <label for="method"><i class="fas fa-list-ol"></i> Method</label>
-                      <textarea id="method" class="form-control" name="method" aria-describedby="method" minlength="3" maxlength="300" rows="2"  required >{{ method }}</textarea>
+                      <textarea id="method" class="form-control" name="method" aria-describedby="method" minlength="3" maxlength="500" rows="3"  required >{{ method }}</textarea>
                       {% if loop.index != 0 %} 
                                 <a href="#" class="remove_field"><i class="fas fa-trash-alt"></i> Delete</a>
                       {% endif %}
