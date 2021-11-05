@@ -295,6 +295,46 @@ def my_recipes(username):
                           recipes=recipes_paginated,
                           pagination=pagination)
 
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+@login_required
+def edit_recipe(recipe_id):
+
+        user = mongo.db.users.find_one(
+        {"username": session["user"]})
+
+        recipe = mongo.db.recipes.find_one(
+        {"_id": ObjectId(recipe_id)})
+
+        if session["user"] == recipe["created_by"] or user["is_admin"]:
+          
+          if request.method == "POST":
+            mongo.db.recipes.update_one(
+                {"_id": ObjectId(recipe_id)}, {
+                    '$set': {
+                            "recipe_name": request.form.get("recipe_name"),
+                            "recipe_image": request.form.get("recipe_image"),
+                            "category": request.form.get("category"),
+                            "serving": request.form.get("serving"),
+                            "time": request.form.get("time"),
+                            "recipe_ingredients": request.form.getlist("recipe_ingredients"),
+                            "method": request.form.getlist("method"),
+                            "created_by": session["user"]
+                          }
+                  })
+        
+            flash("{} Recipe Updated!".format(
+                        request.form.get("recipe_name")))
+
+            return redirect(url_for("recipe", recipe_id=recipe_id))
+
+
+          return render_template("edit_recipe.html", recipe=recipe, user=user)
+
+        else:
+        # if wrong user
+            flash("You do not have permission to view this page")
+            return redirect(url_for('recipe', recipe_id=recipe_id))
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
