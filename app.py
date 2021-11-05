@@ -344,7 +344,7 @@ def delete_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one(
         {"_id": ObjectId(recipe_id)})
     
-    if session["user"] == recipe["created_by"] or user["is_admin"]:
+    if session["user"] == recipe["created_by"] or "admin":
 
         mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
 
