@@ -337,9 +337,27 @@ def edit_recipe(recipe_id):
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
-    mongo.db.recipe.remove({"_id": ObjectId(recipe_id)})
-    flash("Recipe succesfully deleted!")
-    return redirect(url_for("my_recipes", username=session["user"]))
+
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
+    
+    recipe = mongo.db.recipes.find_one(
+        {"_id": ObjectId(recipe_id)})
+    
+    if session["user"] == recipe["created_by"] or user["is_admin"]:
+
+        mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+
+        flash("Recipe Deleted")
+        return redirect(url_for("my_recipes",
+                                username=session["user"]))
+    
+    else:
+        # if wrong user
+        flash("You cannot view this page")
+        return redirect(url_for('recipe',
+                                recipe_id=recipe_id))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
