@@ -267,6 +267,34 @@ def recipe(recipe_id):
 
     return render_template("recipe.html", recipe=recipe)
 
+@app.route("/my_recipes/<username>", methods=["GET", "POST"])
+@login_required
+def my_recipes(username):
+
+    if session["user"] == username:
+
+        # user variable for user image
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})
+
+        recipes = list(
+            mongo.db.recipes.find(
+                {"created_by": username.lower()}))
+
+        recipes_paginated = paginated(recipes)
+        pagination = pagination_args(recipes)
+
+    else:
+        # if wrong user
+        flash("You cannot view this page!")
+        return redirect(url_for("recipes",
+                                username=session["user"]))
+
+    return render_template("my_recipes.html",
+                          user=user,
+                          recipes=recipes_paginated,
+                          pagination=pagination)
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
