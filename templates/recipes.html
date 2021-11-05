@@ -27,6 +27,9 @@
             <h3 class="recipe-name"><a href="{{ url_for('recipe', recipe_id=recipe._id) }}">{{ recipe.recipe_name }}</a></h3>
             <h4 class="recipe-category">Category: {{ recipe.category }}</h4>
             <h5 class="recipe-creator"> Created by: {{ recipe.created_by }}</h5>
+            {% if session.user %}
+              <i class="fas fa-heart"></i>
+            {% endif %}
           </div>
         </div>
       {% endfor %}
