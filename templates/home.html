@@ -22,7 +22,7 @@
                 {% for recipe in recipes %}
                   <div class="carousel-item carousel-item {% if loop.index == 1 %} active {% endif %}">
                     <div class="card">
-                      <img src="{{ recipe.recipe_image }}" class="d-block w-100" alt="">
+                      <a href="{{ url_for('recipe', recipe_id=recipe._id) }}"><img class="carousel-img recipe-card-img card-img-top" src="{{ recipe.recipe_image }}"  onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}"></a>
                     </div>
                   </div>
                 {% endfor %}
