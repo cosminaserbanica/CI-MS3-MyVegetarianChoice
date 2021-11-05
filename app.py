@@ -335,6 +335,12 @@ def edit_recipe(recipe_id):
             flash("You do not have permission to view this page")
             return redirect(url_for('recipe', recipe_id=recipe_id))
 
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    mongo.db.recipe.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe succesfully deleted!")
+    return redirect(url_for("my_recipes", username=session["user"]))
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
