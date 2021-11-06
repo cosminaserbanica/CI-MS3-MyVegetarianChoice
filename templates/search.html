@@ -15,7 +15,7 @@
                     <img class="recipe-card-img card-img-top" src="{{ recipe.recipe_image }}"  onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}">
                     <div class="card-body">
                       <h3 class="recipe-name"><a href="{{ url_for('recipe', recipe_id=recipe._id) }}"{{ recipe.recipe_name }}</a></h3>
-                      <h4 class="recipe-category">Category: {{ recipe.category }}</a></h4>
+                      <h4 class="recipe-category">Category: {{ recipe.category }}</h4>
                       <h5 class="recipe-creator"> Created by: {{ recipe.created_by }}</h5>
                     </div>
                   </div>
