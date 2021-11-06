@@ -8,6 +8,10 @@
   font-family: 'Pacifico', cursive;
 }
 
+.card {
+  margin: 8px;
+  border: 2px solid rgb(73, 99, 245);
+}
 .nav-link {
   font-family: 'Roboto', sans-serif;
 }
