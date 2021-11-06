@@ -96,10 +96,10 @@ def search():
     return render_template('search.html', recipes=recipes_paginated, query=query, results_count=results_count, pagination=pagination)
 
 
-@app.route("/home")
-def home():
+@app.route("/index")
+def index():
     latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
-    return render_template("home.html", recipes=latest_recipes)
+    return render_template("index.html", recipes=latest_recipes)
 
 
 @app.route("/register", methods=["GET", "POST"])
