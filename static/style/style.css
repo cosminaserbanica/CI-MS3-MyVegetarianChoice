@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@500&display=swap');
 
 .navbar-toggler {
   margin-right: 8px;
@@ -6,4 +6,8 @@
 
 .navbar-brand {
   font-family: 'Pacifico', cursive;
+}
+
+.nav-link {
+  font-family: 'Roboto', sans-serif;
 }
