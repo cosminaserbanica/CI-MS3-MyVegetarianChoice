@@ -61,6 +61,12 @@ def login_required(f):
 
 
 @app.route("/")
+def index():
+    latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
+    return render_template("index.html", recipes=latest_recipes)
+
+
+@app.route("/get_recipes")
 def get_recipes():
     recipes = list(mongo.db.recipes.find())
     recipes_paginated = paginated(recipes)
@@ -94,12 +100,6 @@ def search():
     pagination = pagination_args(recipes)
 
     return render_template('search.html', recipes=recipes_paginated, query=query, results_count=results_count, pagination=pagination)
-
-
-@app.route("/index")
-def index():
-    latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
-    return render_template("index.html", recipes=latest_recipes)
 
 
 @app.route("/register", methods=["GET", "POST"])
