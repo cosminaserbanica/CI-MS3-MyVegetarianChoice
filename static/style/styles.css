@@ -6010,7 +6010,7 @@ textarea.form-control-lg {
 }
 
 .carousel-inner, .carousel-inner img {
-  height: 350px;
+  height: auto !important;
 }
 
 .carousel-inner img {
@@ -7992,6 +7992,12 @@ textarea.form-control-lg {
 
 .invisible {
   visibility: hidden !important;
+}
+
+@media (min-width: 280px) and (max-width: 320px) {
+  .navbar-brand {
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 576px) {
