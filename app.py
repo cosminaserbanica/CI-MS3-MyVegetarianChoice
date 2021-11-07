@@ -19,7 +19,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-PER_PAGE = 3
+PER_PAGE = 4
 
 # Pagination
 def paginated(recipes):
@@ -362,4 +362,4 @@ def delete_recipe(recipe_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
