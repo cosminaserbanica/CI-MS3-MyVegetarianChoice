@@ -1,3 +1,5 @@
+# ------- Imports -------
+
 import os
 from flask import (
     Flask, flash, render_template,
@@ -10,6 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
+# ------- Flask App Configuration -------
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -19,9 +22,18 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
+# ------- Pagination -------
+
+"""
+Pagination adapted from:
+    https://github.com/Sharon-B/Recipe-Box/blob/master/app.py
+"""
+
+
 PER_PAGE = 4
 
-# Pagination
+
 def paginated(recipes):
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -37,6 +49,10 @@ def pagination_args(recipes):
 
     return Pagination(page=page, per_page=PER_PAGE,
                       css_framework='bootstrap5', total=total)
+
+
+
+# ------- Check User Login Function -------
 
 
 def login_required(f):
@@ -59,15 +75,27 @@ def login_required(f):
     return decorated_function
 
 
+# ------- Home Page -------
+
 
 @app.route("/")
 def index():
+    """
+    Home page displays the 4 latest recipes
+    """
     latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
     return render_template("index.html", recipes=latest_recipes)
 
 
+
+# ------- Get Recipes Page -------
+
+
 @app.route("/get_recipes")
 def get_recipes():
+    """
+    Get recipes page displays all recipes with pagination and search function
+    """
     recipes = list(mongo.db.recipes.find())
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
@@ -80,9 +108,14 @@ def get_recipes():
 search_term= ''
 
 
+# ------- Search Function -------
+
+
 @app.route("/search", methods=['GET', 'POST'])
 def search():
-    
+    """
+    Search function allows users to search recipes or ingredients
+    """
     global search_term
     query = request.form.get("query")
 
@@ -102,8 +135,14 @@ def search():
     return render_template('search.html', recipes=recipes_paginated, query=query, results_count=results_count, pagination=pagination)
 
 
+# ------- Register Function -------
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Allows user to register an account.
+    """
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -123,8 +162,14 @@ def register():
     return render_template("register.html")
 
 
+# ------- Login Function -------
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Allows registered users to login.
+    """
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -150,21 +195,35 @@ def login():
     return render_template("login.html")
 
 
+# ------- User Profile Page -------
+
+
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-
+    """
+    Allows user to view profile
+    """
     if "user" in session:
         return render_template("profile.html", username=session["user"])
 
     return redirect(url_for("login"))
 
 
+# ------- Log out Function -------
+
+
 @app.route("/logout")
 def logout():
+    """
+    Allows user to log out.
+    """
     # remove user from session cookies
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+# ------- Edit Profile Function -------
 
 
 @app.route("/edit_profile/<username>", methods=["GET", "POST"])
@@ -207,6 +266,10 @@ def edit_profile(username):
         return redirect(url_for("recipes",
                                 username=session["user"]))
 
+
+# ------- Delete User Profile -------
+
+
 @app.route("/delete_profile/<username>")
 @login_required
 def delete_profile(username):
@@ -227,6 +290,11 @@ def delete_profile(username):
         flash("You do not have permission to do that!")
         return redirect(url_for("recipes",
                                 username=session["user"]))
+
+
+
+# ------- Add recipe function -------
+
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 @login_required
@@ -256,6 +324,11 @@ def add_recipe():
 
     return render_template("add_recipe.html", user=user)
 
+
+
+# ------- Recipe Page -------
+
+
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
     """
@@ -267,9 +340,16 @@ def recipe(recipe_id):
 
     return render_template("recipe.html", recipe=recipe)
 
+
+# ------- User recipes Page -------
+
+
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 @login_required
 def my_recipes(username):
+    """
+    Allows users to view the recipes they have added.
+    """
 
     if session["user"] == username:
 
@@ -295,10 +375,17 @@ def my_recipes(username):
                           recipes=recipes_paginated,
                           pagination=pagination)
 
+
+
+# ------- Edit recipe function -------
+
+
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
-
+        """
+        Allows users to edit their own recipes.
+        """
         user = mongo.db.users.find_one(
         {"username": session["user"]})
 
@@ -335,9 +422,16 @@ def edit_recipe(recipe_id):
             flash("You do not have permission to view this page")
             return redirect(url_for('recipe', recipe_id=recipe_id))
 
+
+
+# ------- Delete recipe function -------
+
+
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
-
+    """
+    Allows users to delete their recipes.
+    """
     user = mongo.db.users.find_one(
         {"username": session["user"]})
     
@@ -357,6 +451,9 @@ def delete_recipe(recipe_id):
         flash("You cannot view this page")
         return redirect(url_for('recipe',
                                 recipe_id=recipe_id))
+
+
+# ------- Declaration of special variables -------
 
 
 if __name__ == "__main__":
