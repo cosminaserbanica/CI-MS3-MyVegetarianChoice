@@ -53,10 +53,7 @@ def pagination_args(recipes):
                       css_framework='bootstrap5', total=total)
 
 
-
 # ------- Check User Login Function -------
-
-
 def login_required(f):
     """
     Login_required decorator adapted from TravelTimN.
@@ -89,9 +86,7 @@ def index():
     return render_template("index.html", recipes=latest_recipes)
 
 
-
 # ------- Get Recipes Page -------
-
 
 @app.route("/get_recipes")
 def get_recipes():
@@ -100,12 +95,14 @@ def get_recipes():
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
-    return render_template('recipes.html', recipes=recipes_paginated, pagination=pagination)
+    return render_template('recipes.html',
+                           recipes=recipes_paginated,
+                           pagination=pagination)
 
 
-#global variable
+'#global variable'
 
-search_term= ''
+search_term = ''
 
 
 # ------- Search Function -------
@@ -117,10 +114,9 @@ def search():
     global search_term
     query = request.form.get("query")
 
-    #check if query is present
+    '#check if query is present or use previously saved search term'
     if query:
         search_term = query
-    #if it's not use the previously saved search term
     else:
         query = search_term
 
@@ -130,7 +126,11 @@ def search():
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
-    return render_template('search.html', recipes=recipes_paginated, query=query, results_count=results_count, pagination=pagination)
+    return render_template('search.html',
+                           recipes=recipes_paginated,
+                           query=query,
+                           results_count=results_count,
+                           pagination=pagination)
 
 
 # ------- Register Function -------
@@ -146,7 +146,7 @@ def register():
         if existing_user:
             flash("Username already exists!")
             return redirect(url_for("register"))
-        register= {
+        register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
@@ -170,13 +170,15 @@ def login():
             {"username": request.form.get("username").lower()})
         if existing_user:
             # ensure hashed password matched the password the user has input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(
-                        request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
+                                        session["user"] = request.form.get(
+                                                            "username").lower()
+                                        flash("Welcome, {}".format(
+                                            request.form.get("username")))
+                                        return redirect(url_for("profile",
+                                                        username=session[
+                                                                    "user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -243,11 +245,11 @@ def edit_profile(username):
                     request.form.get("username")))
             session.pop("user")
             return render_template("login.html",
-                                  title="Login")
+                                   title="Login")
 
         return render_template("edit_profile.html",
-                              user=user,
-                              title="Edit Account")
+                               user=user,
+                               title="Edit Account")
 
     else:
         # if wrong user
@@ -278,9 +280,7 @@ def delete_profile(username):
                                 username=session["user"]))
 
 
-
 # ------- Add recipe function -------
-
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 @login_required
@@ -300,7 +300,7 @@ def add_recipe():
             "method": request.form.getlist("method"),
             "created_by": session["user"]
         }
-        
+
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Added!")
         return redirect(url_for("get_recipes"))
@@ -308,9 +308,7 @@ def add_recipe():
     return render_template("add_recipe.html", user=user)
 
 
-
 # ------- Recipe Page -------
-
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
@@ -348,69 +346,67 @@ def my_recipes(username):
                                 username=session["user"]))
 
     return render_template("my_recipes.html",
-                          user=user,
-                          recipes=recipes_paginated,
-                          pagination=pagination)
-
+                           user=user,
+                           recipes=recipes_paginated,
+                           pagination=pagination)
 
 
 # ------- Edit recipe function -------
-
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
         """Allow users to edit their own recipes."""
         user = mongo.db.users.find_one(
-        {"username": session["user"]})
+                {"username": session["user"]})
 
         recipe = mongo.db.recipes.find_one(
-        {"_id": ObjectId(recipe_id)})
+                 {"_id": ObjectId(recipe_id)})
 
         if session["user"] == recipe["created_by"] or user["is_admin"]:
-          
-          if request.method == "POST":
-            mongo.db.recipes.update_one(
-                {"_id": ObjectId(recipe_id)}, {
-                    '$set': {
-                            "recipe_name": request.form.get("recipe_name"),
-                            "recipe_image": request.form.get("recipe_image"),
-                            "category": request.form.get("category"),
-                            "serving": request.form.get("serving"),
-                            "time": request.form.get("time"),
-                            "recipe_ingredients": request.form.getlist("recipe_ingredients"),
-                            "method": request.form.getlist("method"),
-                            "created_by": session["user"]
-                          }
-                  })
-        
-            flash("{} Recipe Updated!".format(
-                        request.form.get("recipe_name")))
 
-            return redirect(url_for("recipe", recipe_id=recipe_id))
+            if request.method == "POST":
+                mongo.db.recipes.update_one(
+                    {"_id": ObjectId(recipe_id)}, {
+                        '$set': {
+                                "recipe_name": request.form.get("recipe_name"),
+                                "recipe_image": request.form.get(
+                                                    "recipe_image"),
+                                "category": request.form.get("category"),
+                                "serving": request.form.get("serving"),
+                                "time": request.form.get("time"),
+                                "recipe_ingredients": request.form.getlist(
+                                                     "recipe_ingredients"),
+                                "method": request.form.getlist("method"),
+                                "created_by": session["user"]
+                            }
+                    })
 
+                flash("{} Recipe Updated!".format(
+                            request.form.get("recipe_name")))
 
-          return render_template("edit_recipe.html", recipe=recipe, user=user)
+                return redirect(url_for("recipe", recipe_id=recipe_id))
+
+            return render_template("edit_recipe.html",
+                                   recipe=recipe, user=user)
 
         else:
-        # if wrong user
+            # if wrong user
             flash("You do not have permission to view this page")
             return redirect(url_for('recipe', recipe_id=recipe_id))
 
 
-
 # ------- Delete recipe function -------
-
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     """Allow users to delete their recipes."""
     user = mongo.db.users.find_one(
         {"username": session["user"]})
-    
+
     recipe = mongo.db.recipes.find_one(
         {"_id": ObjectId(recipe_id)})
-    
+
     if session["user"] == recipe["created_by"] or "admin":
 
         mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
@@ -418,7 +414,7 @@ def delete_recipe(recipe_id):
         flash("Recipe Deleted")
         return redirect(url_for("my_recipes",
                                 username=session["user"]))
-    
+
     else:
         # if wrong user
         flash("You cannot view this page")
