@@ -1,4 +1,4 @@
-# ------- Imports -------
+"""Library Imports."""
 
 import os
 from flask import (
@@ -35,6 +35,7 @@ PER_PAGE = 4
 
 
 def paginated(recipes):
+    """Pagination config."""
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     offset = page * PER_PAGE - PER_PAGE
@@ -43,6 +44,7 @@ def paginated(recipes):
 
 
 def pagination_args(recipes):
+    """Pagination config."""
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     total = len(recipes)
@@ -57,10 +59,12 @@ def pagination_args(recipes):
 
 def login_required(f):
     """
-    Using login_required decorator adapted from:
+    Login_required decorator adapted from TravelTimN.
+
     https://flask.palletsprojects.com/en/2.0.x/patterns/viewdecorators/#login-required-decorator
     https://github.com/TravelTimN/flask-task-manager-project/blob/demo/app.py
     """
+
     @wraps(f)
     def decorated_function(*args, **kwargs):
 
@@ -80,9 +84,7 @@ def login_required(f):
 
 @app.route("/")
 def index():
-    """
-    Home page displays the 4 latest recipes
-    """
+    """Home page displays  the 4 latest recipes."""
     latest_recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
     return render_template("index.html", recipes=latest_recipes)
 
@@ -93,9 +95,7 @@ def index():
 
 @app.route("/get_recipes")
 def get_recipes():
-    """
-    Get recipes page displays all recipes with pagination and search function
-    """
+    """Get recipes page  all recipes with pagination and search function."""
     recipes = list(mongo.db.recipes.find())
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
@@ -113,9 +113,7 @@ search_term= ''
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
-    """
-    Search function allows users to search recipes or ingredients
-    """
+    """Search function to allow users to search recipes or ingredients."""
     global search_term
     query = request.form.get("query")
 
@@ -140,9 +138,7 @@ def search():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """
-    Allows user to register an account.
-    """
+    """Allow user to register an account."""
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -167,9 +163,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """
-    Allows registered users to login.
-    """
+    """Allow registered users to login."""
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -200,9 +194,7 @@ def login():
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    """
-    Allows user to view profile
-    """
+    """Allow user to view profile."""
     if "user" in session:
         return render_template("profile.html", username=session["user"])
 
@@ -214,9 +206,7 @@ def profile():
 
 @app.route("/logout")
 def logout():
-    """
-    Allows user to log out.
-    """
+    """Allow user to log out."""
     # remove user from session cookies
     flash("You have been logged out")
     session.pop("user")
@@ -230,12 +220,11 @@ def logout():
 @login_required
 def edit_profile(username):
     """
-    Allows user to edit their account settings
+    Allow user to edit their account settings.
+
         - Change Password
         - Delete Account
     """
-
-
     user = mongo.db.users.find_one(
         {"username": session["user"]})
 
@@ -273,10 +262,7 @@ def edit_profile(username):
 @app.route("/delete_profile/<username>")
 @login_required
 def delete_profile(username):
-    """
-    Allows user to delete profile
-    """
-
+    """Allow user to delete profile."""
     if session["user"] == username:
         mongo.db.users.remove(
             {"username": username.lower()})
@@ -299,10 +285,7 @@ def delete_profile(username):
 @app.route("/add_recipe", methods=["GET", "POST"])
 @login_required
 def add_recipe():
-    """
-    Users can upload new recipe.
-    """
-
+    """Users can upload new recipe."""
     user = mongo.db.users.find_one(
         {"username": session["user"]})
 
@@ -331,10 +314,7 @@ def add_recipe():
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
-    """
-    Displays the full recipe
-    """
-
+    """Display the full recipe."""
     recipe = mongo.db.recipes.find_one(
         {"_id": ObjectId(recipe_id)})
 
@@ -347,10 +327,7 @@ def recipe(recipe_id):
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 @login_required
 def my_recipes(username):
-    """
-    Allows users to view the recipes they have added.
-    """
-
+    """Allow users to view the recipes they have added."""
     if session["user"] == username:
 
         # user variable for user image
@@ -383,9 +360,7 @@ def my_recipes(username):
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
-        """
-        Allows users to edit their own recipes.
-        """
+        """Allow users to edit their own recipes."""
         user = mongo.db.users.find_one(
         {"username": session["user"]})
 
@@ -429,9 +404,7 @@ def edit_recipe(recipe_id):
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
-    """
-    Allows users to delete their recipes.
-    """
+    """Allow users to delete their recipes."""
     user = mongo.db.users.find_one(
         {"username": session["user"]})
     
