@@ -227,7 +227,7 @@ def edit_profile(username):
         - Change Password
         - Delete Account
     """
-    user = mongo.db.users.find_one(
+    user = mongo.db.users.find_one_or_404(
         {"username": session["user"]})
 
     if session["user"] == username:
@@ -313,7 +313,7 @@ def add_recipe():
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
     """Display the full recipe."""
-    recipe = mongo.db.recipes.find_one(
+    recipe = mongo.db.recipes.find_one_or_404(
         {"_id": ObjectId(recipe_id)})
 
     return render_template("recipe.html", recipe=recipe)
