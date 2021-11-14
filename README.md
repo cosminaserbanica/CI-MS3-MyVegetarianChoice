@@ -17,21 +17,20 @@
      1. [Design Features](#Design-Features) 
      2. [Existing Features](#Existing-Features)
      3. [Features to Implement in the future](#Features-to-Implement-in-the-future)
-4. [Issues and Bugs](#Issues-and-Bugs)
-5. [Technologies Used](#Technologies-Used)
+4. [Technologies Used](#Technologies-Used)
      1. [Languages](#Languages)
      2. [Tools](#Tools)
      3. [Libraries](#Libraries)
      4. [Database Management](#Database-Management)
-6. [Testing](#Testing)
+5. [Testing](#Testing)
      1. [Testing.md](testing.md)
-7. [Deployment](#Deployment)
+6. [Deployment](#Deployment)
      1. [1. Database Creation](#1-Database-Creation)
      2. [2. Local Copy Creation](#2-Local-Copy-Creation)
      3. [3. Heroku App Creation](#3-Heroku-App-Creation)
-8. [Credits](#Credits)
-9. [Acknowledgements](#Acknowledgements)
-10. [Technical Support](#Technical-Support)
+7. [Credits](#Credits)
+8. [Acknowledgements](#Acknowledgements)
+9. [Technical Support](#Technical-Support)
 ***
 
 ## UX 
@@ -166,3 +165,7 @@ After defining the strategy, the scope was developed based on the following requ
 #### Structure
 With the previously identified strategy and scope, the ideal structure was agreed to match the following diagram:
 ![Site structure](static/images/structure.PNG)
+
+#### Skeleton
+**Skeleton** has been put together using [Balsamiq wireframes](https://balsamiq.com/ "Link to Balsamiq wireframes"):
+![](static/images/wireframes.PNG)
