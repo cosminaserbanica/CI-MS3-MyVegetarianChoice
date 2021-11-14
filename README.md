@@ -12,11 +12,8 @@
 2. [Database Info](#Database-Info)
      1. [Users Collection](#Users-Collection)
      2. [Recipes Collection](#Recipes-Collection)
-     3. [Categories Collection](#Categories-Collection)
 3. [Features](#Features)
-     1. [Design Features](#Design-Features) 
-     2. [Existing Features](#Existing-Features)
-     3. [Features to Implement in the future](#Features-to-Implement-in-the-future)
+     1. [Design Features](#Design-Features)
 4. [Technologies Used](#Technologies-Used)
      1. [Languages](#Languages)
      2. [Tools](#Tools)
@@ -203,3 +200,47 @@ For this project, the NoSQL database [MongoDB](https://www.mongodb.com/ "Link to
      - Ingredients
      - Method
 - The Ingredients and Method are arrays, allowing data to be entered dynamically.
+
+## Design Features
+
+Each page of the website features a consistently responsive and intuitive navigational system:
+- There is a conventionally placed **navbar** on the top of each page with easily accessible and identifiable navigation links with a clickable logo, redirecting users back to the home page.
+     - On mobile and tablet screens, the navbar is located in a conventionally placed 'hamburger' menu.
+- The **Footer** displays the information regarding the use of copyrighted material on the website.
+- [Jinja](http://jinja.pocoo.org/docs/2.10/ "Link to Jinja information") was used to extend the `base.html` page, allowing functionality across all pages. The extended block elements created the same basic layout for each page:
+
+     ```
+     <nav>
+          <!-- Navigational content -->
+     </nav>
+
+     <section>
+
+          {% block header %}
+               <!-- Page Banner Image and Title -->
+          {% endblock %}
+
+          {% block flash %}
+               <!-- Appropriate flash messages -->
+          {% endblock %}
+
+          {% block content %}
+               <!-- Content unique to each page -->
+          {% endblock %}
+
+     </section>
+
+     <footer>
+          <!-- Footer content -->
+     </footer>
+     ```
+
+- If the user is in session, there will be additional links added to the `navbar`:
+     - Profile
+     - Add a Recipe
+     - Logout
+
+- On mobile and tablet screens, the extra buttons will appear on the navigation (hamburger) menu in order to provide quick access.
+
+
+- Recipe **Cards** are used throughout the website, providing users with a snapshot of the recipe, name category and who created it, before they view the entire recipe page. Each card is designed the same for consistency purposes and allows the user to click on the recipe name in order to be directed to the recipe page.
