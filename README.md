@@ -182,4 +182,24 @@ With the previously identified strategy and scope, the ideal structure was agree
 - <strong>Typography</strong>
 
     - The font used for the LOGO is 'Pacifico', with cursive as fallback.
-    - The font used for Menu is 'Roboto', with sans-serif as fallback
+    - The font used for Menu is 'Roboto', with sans-serif as fallback.
+
+## Data Schema
+
+For this project, the NoSQL database [MongoDB](https://www.mongodb.com/ "Link to MongoDB") was used to store the dataset. For this, two collections were created:
+
+### Users Collection
+- When registering an account, the user provides:
+     - Username (unique identifier)
+     - Password (hashed)
+
+### Recipes Collection
+- When creating a recipe, the user provides:
+     - Recipe Name
+     - Recipe Image (via URL)
+     - Category
+     - Serving
+     - Time
+     - Ingredients
+     - Method
+- The Ingredients and Method are arrays, allowing data to be entered dynamically.
