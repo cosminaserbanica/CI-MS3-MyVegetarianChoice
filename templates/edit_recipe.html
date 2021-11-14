@@ -97,11 +97,11 @@
               <!-- Action Buttons -->
               <div class="row no-gutters create-btns">
                   <div class="col-6 create-btn white-btn">
-                      <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn" aria-label="Cancel">Cancel</a>
+                      <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn" aria-label="Cancel" style="background-color: chocolate;">Cancel</a>
                   </div>
 
                   <div class="col-6 create-btn">
-                      <button class="btn" type="submit" name="action" aria-label="Add Recipe">Save</button>
+                      <button class="btn" type="submit" name="action" aria-label="Add Recipe" style="background-color: chocolate;">Save</button>
                   </div>
               </div>
           </form>
