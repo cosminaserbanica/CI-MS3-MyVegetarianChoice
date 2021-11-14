@@ -26,7 +26,6 @@
      3. [3. Heroku App Creation](#3-Heroku-App-Creation)
 7. [Credits](#Credits)
 8. [Acknowledgements](#Acknowledgements)
-9. [Technical Support](#Technical-Support)
 ***
 
 ## UX 
@@ -432,3 +431,18 @@ MONGO_DBNAME | `<your_mongo_db_name>`
 Heroku will receive the pushed code from the GitHub repository and host the application with the required packages set out. 
 
 The deployed version can now be viewed by selecting `View App` in the top-right of the page.
+
+## Credits 
+During the production of the application, multiple sources were accessed, such as: 
+
+The [Code Institute Task Manager Mini Project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) mini project was used as a starting point in the develpment of the **CRUD** functionality.
+
+References for code that was copied and edited:
+- [Stack Overflow](https://stackoverflow.com/ "Link to Stack Overflow page")
+- [Bootstrap](https://getbootstrap.com/ "Link to BootStrap page")
+- [Rebecca Tracey- Timoney](https://github.com/rebeccatraceyt/bake-it-til-you-make-it/ "Link to Rebecca's repo")
+
+## Acknowledgements
+The developer would like to thank the following:
+- Fellow student Rebecca, for all the support.
+- Their mentor Brian, for her consistent guidance and advice.
