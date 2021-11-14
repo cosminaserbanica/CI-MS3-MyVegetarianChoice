@@ -9,7 +9,7 @@
      1. [Project Goals](#Project-Goals)
      2. [User Stories](#User-Stories)
      3. [Development Planes](#Development-Planes)
-2. [Data Schema](#Data-Schema)
+2. [Database Info](#Database-Info)
      1. [Users Collection](#Users-Collection)
      2. [Recipes Collection](#Recipes-Collection)
      3. [Categories Collection](#Categories-Collection)
@@ -184,7 +184,7 @@ With the previously identified strategy and scope, the ideal structure was agree
     - The font used for the LOGO is 'Pacifico', with cursive as fallback.
     - The font used for Menu is 'Roboto', with sans-serif as fallback.
 
-## Data Schema
+## Database info
 
 For this project, the NoSQL database [MongoDB](https://www.mongodb.com/ "Link to MongoDB") was used to store the dataset. For this, two collections were created:
 
