@@ -12,8 +12,7 @@
 2. [Database Info](#Database-Info)
      1. [Users Collection](#Users-Collection)
      2. [Recipes Collection](#Recipes-Collection)
-3. [Features](#Features)
-     1. [Design Features](#Design-Features)
+3. [Design Features](#Design-Features)
 4. [Technologies Used](#Technologies-Used)
      1. [Languages](#Languages)
      2. [Tools](#Tools)
@@ -244,3 +243,52 @@ Each page of the website features a consistently responsive and intuitive naviga
 
 
 - Recipe **Cards** are used throughout the website, providing users with a snapshot of the recipe, name category and who created it, before they view the entire recipe page. Each card is designed the same for consistency purposes and allows the user to click on the recipe name in order to be directed to the recipe page.
+
+## Technologies Used
+### Languages
+- [HTML5](https://en.wikipedia.org/wiki/HTML5 "Link to HTML Wiki")
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets "Link to CSS Wiki")
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript "Link to JavaScript Wiki")
+- [Python](https://www.python.org/ "Link to Python Homepage")
+
+### Tools
+- [Visual Studio Code Insiders](https://code.visualstudio.com/insiders/ "Link to download Visual Studio Code Insiders") 
+     - VSCode was used as the preferred IDE.
+- [Git](https://git-scm.com/ "Link to Git homepage")
+     - Git was used for version control to commit to Git and push to Heroku.
+- [GitHub](https://github.com/ "Link to GitHub")
+     - GitHub was used to store the project repository, after pushing.
+- [Heroku](https://id.heroku.com/login "Link to Heroku login page")
+     -  Heroku was used in order to deploy the website.
+- [Balsamiq](https://www.balsamiq.com/ "Link to balsamiq homepage")
+     - Figma was used to create the wireframes during the design phase of the project.
+- [Font Awesome](https://fontawesome.com/ "Link to Font Awesome site")
+     - Font Awesome was used in conjunction with Iconify for icons used throughout the website.
+
+### Libraries
+- [Bootstrap](https://getbootstrap.com/docs/4.4/getting-started/introduction/ "Link to Bootstrap page")
+     - Bootstrap was used to implement the responsiveness of the site, using bootstrap classes.
+- [jQuery](https://jquery.com/ "Link to jQuery page")
+     - jQuery was used to simplify the JavaScript code used.
+- [Google Fonts](https://fonts.google.com/ "Link to Google Fonts")
+    - Google fonts was used to import the fonts **"Pacifico"** and **"Roboto"** into the style.css file. These fonts were used throughout the project.
+- [Bootstrap Themes](https://themes.getbootstrap.com/ "Link to Bootstrap Themes page")
+     - The website was build using one of the bootstrap themes.
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/ "Link to Flask Homepage")
+     - Flask was used as the web framework for the application.
+- [PyMongo](https://pypi.org/project/pymongo/ "Link to PyMongo information")
+     - `flask_pymongo` was used a communication line between the MongoDB database and Python.
+- [Pagination](https://flask-paginate.readthedocs.io/en/master/ "Link to flask-paginate documentation")
+     - `flask_paginate` extension was used to implement pagination functionality on select pages.
+- [BSON](https://bsonspec.org/ "Link to BSon documentation")
+     - `bson.objectid` is a required dependency for MongoDB management system.
+- [Jinja](http://jinja.pocoo.org/docs/2.10/ "Link to Jinja information")
+     - Jinja templating language was used to simplify and display backend data in html.
+- [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/ "Link to Werkzeug information")
+     - Werkzeug was used for password hashing and authentication.
+
+### Database Management
+- [MongoDB](https://www.mongodb.com/ "Link to MongoDB site")
+     - MongoDB was the chosen NoSQL database for this website.
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas "Link to MongoDB Atlas site")
+     - MongoDB Atlas was the cloud database service used to host the database.
