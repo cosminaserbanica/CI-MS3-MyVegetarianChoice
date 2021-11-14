@@ -3,6 +3,7 @@
 
 
   <section class="page-section">
+    <!-- Recipe Name -->
     <div class="container-fluid page-padding">
       <div id="recipe-name" class="col-12 col-md-6">
         <div id="recipe-name">
@@ -15,6 +16,7 @@
             <img src="{{ recipe.recipe_image }}" style="width: -webkit-fill-available;" onerror="this.src='../../static/images/default-img.png';" alt="{{ recipe.recipe_name }}">
         </div>
       </div>
+      <!-- Recipe Category -->
       <div id="recipe-category" class="col-12 col-md-6">
         <div id="recipe-category">
           <span class="value">Category: {{ recipe.category }}</span>
@@ -22,12 +24,14 @@
       </div>
       <div id="rec-specs" class="col-12">
         <div class="row">
+          <!-- Recipe Prep Time -->
           <div class="col-6">
             <div>
               <span class="recipe-icon iconify" data-icon="ant-design:clock-circle-filled" data-inline="true"></span>
               <span class="value">Prep time: {{ recipe.time }}</span>
             </div>
           </div>
+          <!-- Recipe Serving -->
           <div class="col-6">
             <div>
               <span class="recipe-icon iconify" data-icon="majesticons:users" data-inline="true"></span>
@@ -40,6 +44,7 @@
     </div>
   </section>
 
+<!-- Recipe Ingredients -->
   <section class="page-section">
     <div class="row">
       <div id="recipe-ingredients" class="col-12 col-md-6">
@@ -52,6 +57,7 @@
               {% endfor %}
           </div>
       </div>
+<!-- Recipe Cooking Method -->
       <div id="recipe-method" class="col-12 col-md-6">
           <div id="method-list">
             <h3>Method</h3>

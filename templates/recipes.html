@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Search option -->
   <section class="page-section">
       <div class="row" style="width: 100%; text-align: center; margin: 0;">
         <form action="{{ url_for('search') }}" method="POST" aria-label="Search Bar">
@@ -17,7 +18,7 @@
       </div>
   </section>
 
-
+<!-- Recipe Card -->
   <section class="page-section">
     <div class="row" style="width: 100%; text-align: center; margin: 0;">
       {% for recipe in recipes %}
