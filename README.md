@@ -169,3 +169,17 @@ With the previously identified strategy and scope, the ideal structure was agree
 #### Skeleton
 **Skeleton** has been put together using [Balsamiq wireframes](https://balsamiq.com/ "Link to Balsamiq wireframes"):
 ![](static/images/wireframes.PNG)
+
+#### Surface
+
+- <strong>Colour Scheme</strong>
+
+     - The developer has chosen to use blue for navbar and orange for links and buttons.
+     
+     ![](static/images/colours.PNG)
+
+
+- <strong>Typography</strong>
+
+    - The font used for the LOGO is 'Pacifico', with cursive as fallback.
+    - The font used for Menu is 'Roboto', with sans-serif as fallback
