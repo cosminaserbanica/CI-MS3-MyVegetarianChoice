@@ -23,7 +23,8 @@
      2. [Tools](#Tools)
      3. [Libraries](#Libraries)
      4. [Database Management](#Database-Management)
-6. [Testing](#Testing) ☞ **[Testing.md](TESTING.md)**
+6. [Testing](#Testing)
+     1. [Testing.md](testing.md)
 7. [Deployment](#Deployment)
      1. [1. Database Creation](#1-Database-Creation)
      2. [2. Local Copy Creation](#2-Local-Copy-Creation)
@@ -47,6 +48,7 @@ The user is looking for:
 - An easy-to-use user management system with **CRUD** conventions to:
 
     - Create a user account.
+    - View user account.
     - Update their passord.
     - Delete their user account.
 
@@ -90,3 +92,77 @@ As a developer, I am looking to:
 1. Edit **any** recipes created by users.
 2. Delete **any** recipes from the dashboard.
 
+### Development Planes
+
+In order to develop and promote an interactive web application, My Vegetarian Choice has been created based on::
+
+#### Strategy
+The targeted audience:
+- New Users **(Non-Registered)**
+- Returning Users **(Registered)**
+- Individuals who want to find a recipe.
+- Individuals who want to create a recipe.
+- Age group: suitable for any age group
+
+The website needs to enable the **user** to:
+- Register/Login to an account
+- Edit their account
+- Delete their account
+- Search Recipe database by:
+    - Name/Phrase
+    - Ingredient
+- View Recipe Dashboard with the following information:
+    - Name
+    - Image
+    - Category
+    - Serving Size
+    - Time
+    - Ingredients
+    - Cooking method
+    - The user who created the recipe
+- Upload and access their own recipes
+
+#### Scope
+After defining the strategy, the scope was developed based on the following requirements:
+- **User Requirements**
+     - The user will be looking for:
+        - Customisable and Editable account:
+            - Custom Username/Password
+            - Manage their account
+            - Upload their own recipes
+            - Manage their own recipes
+        - Easy Navigation
+        - Recipe dashboard:
+            - Name
+            - Image URL
+            - Category
+            - Serving Size
+            - Time
+            - Who created the recipe
+            - Ingredients
+            - Cooking method
+        - Searchable database system
+
+- **How the user requirements have been met**
+     - The user will be able to:
+        - Register/Login to account
+        - Edit their profile:
+            - Edit Password
+            - Delete their account
+            - Upload their own recipes
+            - Edit and delete their recipes
+        - Navigate to recipes:
+            - Search by name or ingredient
+            - My Recipes Page
+        - Create their recipes, providing:
+            - Name
+            - Image URL
+            - Category
+            - Serving Size
+            - Time
+            - Ingredients
+            - Cooking Method
+
+#### Structure
+With the previously identified strategy and scope, the ideal structure was agreed to match the following diagram:
+![Site structure](static/images/structure.PNG)
