@@ -15,8 +15,7 @@
 3. [Automated Testing](#Automated-Testing) 
      - [Code Validation](#Code-Validation)
      - [Browser Validation](#Browser-Validation)
-4. [User Testing](#User-Testing)
-5. [Note To Accessor](#Note-To-Accessor)
+4. [Test Recipe](#Test-recipe)
 
 ## Testing User Stories
 
@@ -125,3 +124,43 @@
 ### View my recipes
 
 ![](static/gifs/viewmyrecipes.gif)
+
+## Automated Testing
+
+### Code Validation
+
+[W3C Markup Validator](https://validator.w3.org/ "Link to W3C Markup Validator") was used to validate the `HTML` code to achieve the following result:
+![](static/images/home.PNG)
+[W3C CSS Validator](https://jigsaw.w3.org/css-validator/ "Link to W3C CSS Validator") was used to validate the `CSS` code to achieve the following result:
+![](static/images/styles.PNG)
+[PEP8 online](https://pep8online.com/ "Link to W3C CSS Validator") was used to validate the `Python` code to achieve the following result:
+![](static/images/pep8.PNG)
+[PEP257](https://www.python.org/dev/peps/pep-0257/ "Link to PEP257") compliance to docstring convention was ensured:
+![](static/images/pep257.PNG)
+
+### Browser Validation
+
+The application was succesfully tested on **Chrome**, **Mozilla Firefox**, **Opera** and **Safari**.
+
+## Test Recipe
+
+To enable the assesor to test the full functionality of the application, the developer has decided to post the following recipe that the assessor can use:
+
+| Type | Content |
+|:----:|----------|
+| Name | Gazpacho pasta salad |
+| Image URL | http://ukcdn.ar-cdn.com/recipes/port960/c0fb8e65-5120-48db-b079-5115f5cb3246.jpg |
+| Category | Pasta |
+| Time | 30 mins |
+| Serving | 6 |
+|Ingredients |225g (8 oz) fusilli pasta|
+| | 4 spring onions, chopped
+| | 1 green pepper, chopped |
+| | 1 jalapeño chilli, seeded and minced |
+| | 2 tomatoes, chopped |
+| | 1 cucumber |
+| | 175ml (6 fl oz) tomato juice |
+| | 4 tablespoons fresh lime juice |
+| Method | Cook fusilli according to package instructions; drain.|
+| | In large bowl combine pasta, onion, green pepper, jalapeño and the rest of the ingredients. |
+| | Toss well and chill in refrigerator for 2 hours. Toss again before serving. |

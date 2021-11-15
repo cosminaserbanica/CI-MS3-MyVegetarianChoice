@@ -251,8 +251,8 @@ Each page of the website features a consistently responsive and intuitive naviga
 - [Python](https://www.python.org/ "Link to Python Homepage")
 
 ### Tools
-- [Visual Studio Code Insiders](https://code.visualstudio.com/insiders/ "Link to download Visual Studio Code Insiders") 
-     - VSCode was used as the preferred IDE.
+- [GitPod](https://gitpod.io/ "Link to Gitpod") 
+     - Gitpod was used as the preferred IDE.
 - [Git](https://git-scm.com/ "Link to Git homepage")
      - Git was used for version control to commit to Git and push to Heroku.
 - [GitHub](https://github.com/ "Link to GitHub")
