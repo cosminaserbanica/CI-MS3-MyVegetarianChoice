@@ -86,3 +86,42 @@
 **2. The Admin can delete any recipe as needed.**
 
 - Each Recipe the Admin is viewing displays a conditional link in the form of a bin icon, which allows the Admin to delete that recipe.
+
+## Manual Testing
+
+### Home page
+
+![](static/gifs/navbar.gif)
+![](static/gifs/homebuttons1.gif)
+![](static/gifs/homebuttons2.gif)
+![](static/gifs/carousel.gif)
+
+### Recipes page
+
+![](static/gifs/recipesview.gif)
+![](static/gifs/recipessearch.gif)
+![](static/gifs/recipespagination.gif)
+
+### Register
+
+![](static/gifs/register.gif)
+
+### Login
+
+![](static/gifs/login.gif)
+
+### Logout
+
+![](static/gifs/logout.gif)
+
+### Add a recipe
+
+![](static/gifs/addrecipe.gif)
+
+### Edit profile
+
+![](static/gifs/editprofile.gif)
+
+### View my recipes
+
+![](static/gifs/viewmyrecipes.gif)
